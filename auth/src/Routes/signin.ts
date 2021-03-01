@@ -1,9 +1,9 @@
 import jwt from 'jsonwebtoken';
 import { body } from 'express-validator';
 import express,{Request,Response} from 'express';
-import { validateRequest } from '../middleware/validate_request';
-import { User } from '../models/user.model';
-import { badRequestErrors } from '../errors/bad_request_errors';
+import { validateRequest } from '@sgticket/common';
+import { User } from '../models/user';
+import { BadRequestError } from '@sgticket/common';
 
 
 const router = express.Router()
@@ -19,11 +19,11 @@ router.post('api/users/signin', [
         const { email, password } = req.body
         const existingUser = await  User.findOne({ email })
         if (!existingUser) {
-            throw new badRequestErrors('Invalid credentials')
+            throw new BadRequestError('Invalid credentials')
         }
-        const passwordMatch =await  password.compare(existingUser.password, password)
+        const passwordMatch = await  password.compare(existingUser.password, password)
         if (!passwordMatch) {
-            throw new badRequestErrors('Invalid credentials')
+            throw new BadRequestError('Invalid credentials')
         }
         //jwt
         const userJWT = jwt.sign(
@@ -40,4 +40,4 @@ router.post('api/users/signin', [
 })
 
 
-export { router as signIn }
+export { router as signinRouter }

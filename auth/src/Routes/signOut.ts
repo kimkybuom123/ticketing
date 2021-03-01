@@ -10,4 +10,4 @@ router.post("/api/signout/", (req, res) => {
 })
 
 
-export { router as signOut }
+export { router as signoutRouter }

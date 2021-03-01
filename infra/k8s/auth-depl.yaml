@@ -14,8 +14,10 @@ spec:
     spec:
       containers:
         - name: auth
-          image: stephengrider/auth
+          image: thanhtruc123/auth
           env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:

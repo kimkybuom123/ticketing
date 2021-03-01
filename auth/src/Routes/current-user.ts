@@ -1,7 +1,6 @@
-import { requireAuth } from './../middleware/require-auth';
+import { requireAuth } from '@sgticket/common';
 import express ,{ Router } from "express";
-import { currentUser } from '../middleware/current-user';
-
+import { currentUser } from '@sgticket/common';
 
 const router = express.Router()
 

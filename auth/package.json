@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@sgticket/common": "^1.0.17",
     "@types/cookie-session": "^2.0.42",
     "@types/jsonwebtoken": "^8.5.0",
+    "@types/mongoose": "^5.10.3",
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
     "crypto": "^1.0.1",
@@ -31,10 +33,10 @@
     "start": "ts-node-dev src/index.ts",
     "test": "jest --watchAll --no-cache"
   },
-  "jest":{
-    "preset":"ts-jest",
-    "testEnvironment":"node",
-    "setupFilesAfterEnv":[
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
       "./src/test/setup.ts"
     ]
   },
