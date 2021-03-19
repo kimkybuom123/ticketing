@@ -1,43 +1,55 @@
-import jwt from 'jsonwebtoken';
+import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import express,{Request,Response} from 'express';
-import { validateRequest } from '@sgticket/common';
+import jwt from 'jsonwebtoken';
+import { validateRequest, BadRequestError } from '@sgticket/common';
+
+import { Password } from '../services/password';
 import { User } from '../models/user';
-import { BadRequestError } from '@sgticket/common';
 
+const router = express.Router();
 
-const router = express.Router()
-router.post('api/users/signin', [
-    body('email')
-        .isEmail()
-        .withMessage('email must be valid'),
+router.post(
+  '/api/users/signin',
+  [
+    body('email').isEmail().withMessage('Email must be valid'),
     body('password')
-        .trim()
-        .notEmpty()
-        .withMessage('Password must be suppled ')
-], validateRequest,async (req: Request, res: Response) => {
-        const { email, password } = req.body
-        const existingUser = await  User.findOne({ email })
-        if (!existingUser) {
-            throw new BadRequestError('Invalid credentials')
-        }
-        const passwordMatch = await  password.compare(existingUser.password, password)
-        if (!passwordMatch) {
-            throw new BadRequestError('Invalid credentials')
-        }
-        //jwt
-        const userJWT = jwt.sign(
-            {
-                id: existingUser.id,
-                email:existingUser.email
-            },process.env.JWT_KEY!
-        )
-        req.session = {
-            jwt:userJWT
-        }
+      .trim()
+      .notEmpty()
+      .withMessage('You must supply a password'),
+  ],
+  validateRequest,
+  async (req: Request, res: Response) => {
+    const { email, password } = req.body;
 
-        res.status(200).send(existingUser)
-})
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      throw new BadRequestError('Invalid credentials');
+    }
 
+    const passwordsMatch = await Password.compare(
+      existingUser.password,
+      password
+    );
+    if (!passwordsMatch) {
+      throw new BadRequestError('Invalid Credentials');
+    }
 
-export { router as signinRouter }
+    // Generate JWT
+    const userJwt = jwt.sign(
+      {
+        id: existingUser.id,
+        email: existingUser.email,
+      },
+      process.env.JWT_KEY!
+    );
+
+    // Store it on session object
+    req.session = {
+      jwt: userJwt,
+    };
+
+    res.status(200).send(existingUser);
+  }
+);
+
+export { router as signinRouter };

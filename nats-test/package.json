@@ -1,0 +1,32 @@
+{
+  "name": "nats-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "publish": "ts-node-dev --notify false src/publisher.ts",
+    "listen": "ts-node-dev --notify false src/listener.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "@types/node": "^14.14.31",
+    "node-nats-streaming": "^0.3.2",
+    "tsc": "^1.20150623.0",
+    "tsc-init": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.6.4",
+    "jasmine-core": "^3.6.0",
+    "karma": "^6.1.1",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-jasmine": "^4.0.1",
+    "karma-webpack": "^5.0.0",
+    "ts-loader": "^8.0.17",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.2",
+    "webpack": "^5.24.2",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
