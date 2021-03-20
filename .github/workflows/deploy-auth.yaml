@@ -14,11 +14,11 @@ jobs:
     - run: cd auth && docker build -t thanhtruc123/auth .
     - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
       env:
-        DOCKER_USERNAME: ${{secrects.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrects.DOCKER_PASSWORD}}
+        DOCKER_USERNAME: ${{secrect.DOCKER_USERNAME}}
+        DOCKER_PASSWORD: ${{secrect.DOCKER_PASSWORD}}
     - run: docker push thanhtruc123/auth
     - uses: digitalocean/action-doctl@v2
       with:
-        token: ${{secrects.DIGITALOCEAN_ACCESS_TOKEN}}
+        token: ${{secrect.DIGITALOCEAN_ACCESS_TOKEN}}
     - run: doctl kubernetes cluster kubeconfig save ticketing
     - run: kubectl rollout restart deployment auth-depl
