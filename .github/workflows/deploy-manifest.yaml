@@ -1,3 +1,6 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
 name: Deploy-auth
 
 on:
@@ -11,14 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: cd auth && docker build -t thanhtruc123/auth .
-    - run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-      env:
-        DOCKER_USERNAME: ${{secrects.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrects.DOCKER_PASSWORD}}
-    - run: docker push thanhtruc123/auth
     - uses: digitalocean/action-doctl@v2
       with:
         token: ${{secrects.DIGITALOCEAN_ACCESS_TOKEN}}
     - run: doctl kubernetes cluster kubeconfig save ticketing
-    - run: kubectl rollout restart deployment auth-depl
+    - run: kubectl apply -f infra/k8s && kubectl apply -f ./infra/k8s-prod
