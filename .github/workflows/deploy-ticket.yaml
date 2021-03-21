@@ -17,7 +17,7 @@ jobs:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
     - name: Push to Docker Hub
-      uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v2
       with:
        repository: ${{secrets.DOCKER_USERNAME}}/tickets
        tag_with_ref: true
