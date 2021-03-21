@@ -19,3 +19,4 @@ jobs:
         password: ${{secrets.DOCKER_PASSWORD}}
         repository: thanhtruc123/tickets
         tags: lastest, ${{github.run_number}}
+        path: ticketing/tickets/**
