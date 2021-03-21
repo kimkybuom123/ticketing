@@ -1,4 +1,4 @@
-name: Deploy-auth
+name: Deploy-tickets
 
 on:
   push:
@@ -16,7 +16,11 @@ jobs:
       env:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-    - run: docker push thanhtruc123/tickets
+    - name: Push to Docker Hub
+      uses: docker/build-push-action@v1
+      with:
+       repository: ${{secrets.DOCKER_USERNAME}}/tickets
+       tag_with_ref: true
     - uses: digitalocean/action-doctl@v2
       with:
         token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
