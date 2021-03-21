@@ -10,7 +10,8 @@ jobs:
   build-container:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Check out code 
+      uses: actions/checkout@v2
     - run: cd tickets
     - name: publish docker
     - uses: docker/build-push-action@v1
