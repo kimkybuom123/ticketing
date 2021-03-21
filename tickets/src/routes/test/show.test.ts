@@ -5,7 +5,7 @@ import { Ticket } from "../../models/ticket";
 
 it('return  a 404 if the ticket is not found ', async () => {
     const response = await request(app)
-        .get('/api/tickets/sdigiqw')
+        .get('/api/tickets/igiqw')
         .send()
         .expect(404)
     console.log(response.body)
