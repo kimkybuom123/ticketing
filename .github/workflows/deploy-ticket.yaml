@@ -1,24 +1,30 @@
 name: Deploy-tickets
-
 on:
   push:
     branches: [ master ]
-    paths: 
-      - 'tickets/**'
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - run: cd tickets && docker build -t thanhtruc123/tickets .
-    - run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-      env:
-        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-    - run: docker push thanhtruc123/tickets:latest
-    - uses: digitalocean/action-doctl@v2
-      with:
-        token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
-    - run: doctl kubernetes cluster kubeconfig save ticketing
-    - run: kubectl rollout restart deployment tickets-depl
+     - name: Checkout
+       uses: actions/checkout@v2
+
+     - name: login Docker hub
+       uses: docker/login-action@v1
+       with:
+        username: ${{secrets.DOCKER_USERNAME}}
+        password: ${{serects.DOCKER_ACCESS.TOKEN}}
+        
+     - name: Set up Docker Buildx
+       uses: docker/setup-buildx-action@v1
+       id: buildx 
+      
+     - name: Build and push
+       uses: docker/build-push-action@v2
+       with:
+         context: ./tickets/**
+         file: Dockerfile
+         builder: ${{steps.buildx.outputs.name}}
+         push: true
+         tag: ${{secrects.DOCKER_USERNAME}}/tickets
