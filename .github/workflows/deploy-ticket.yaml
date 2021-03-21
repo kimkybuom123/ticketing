@@ -27,4 +27,4 @@ jobs:
          file: Dockerfile
          builder: ${{steps.buildx.outputs.name}}
          push: true
-         tag: ${{secrects.DOCKER_USERNAME}}/tickets
+         tag: ${{secrets.DOCKER_USERNAME}}/tickets
