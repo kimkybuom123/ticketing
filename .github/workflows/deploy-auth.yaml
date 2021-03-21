@@ -15,8 +15,9 @@ jobs:
     - run: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
       env:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}} 
-    - run: docker push thanhtruc123/auth:lasest
+        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+    - run: docker tag auth:lasest thanhtruc123/auth:firstimage
+    - run: docker push thanhtruc123/auth:firstimage
     - uses: digitalocean/action-doctl@v2
       with:
         token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
