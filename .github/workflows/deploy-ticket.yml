@@ -16,13 +16,7 @@ jobs:
       env:
         DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-    - name: Push to Docker Hub
-      uses: docker/build-push-action@v2
-      with:
-       repository: ${{secrets.DOCKER_USERNAME}}/tickets
-       tag_with_ref: true
-       push: true
-       tags: thanhtruc123/tickets:latest
+    - run: docker push thanhtruc123/tickets
     - uses: digitalocean/action-doctl@v2
       with:
         token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
