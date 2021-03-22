@@ -25,7 +25,7 @@ jobs:
       - name: publish docker
         uses: docker/build-push-action@v2.3.0
         with:
-          context: .
+          context: ./tickets
           repository: thanhtruc123/tickets
           tags: thanhtruc123/tickets:lastest
           push: true
