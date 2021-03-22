@@ -30,5 +30,8 @@ jobs:
           tags: thanhtruc123/auth:lastest
           push: true
           path: ./auth      
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
         
         
