@@ -30,5 +30,7 @@ jobs:
           tags: thanhtruc123/tickets:lastest
           push: true
           path: ./tickets      
-        
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
         
