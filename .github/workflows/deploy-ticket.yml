@@ -32,4 +32,4 @@ jobs:
           context: https://github.com/kimkybuom123/ticketing/tree/master/tickets
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: user/app:latest
+          tags: thanhtruc123/tickets:latest
