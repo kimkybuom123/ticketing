@@ -28,11 +28,7 @@ jobs:
           context: ./tickets
           repository: thanhtruc123/tickets
           tags: thanhtruc123/tickets:lastest
-          path: ./tickets
-      - name: ls image
-        run: docker image ls
-      - name: push image
-        run: docker push thanhtruc123/tickets:lastest
-      
+          push: true
+          path: ./tickets      
         
         
