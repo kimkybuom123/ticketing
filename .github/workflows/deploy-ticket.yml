@@ -25,6 +25,8 @@ jobs:
       - name: publish docker
         uses: docker/build-push-action@v2.3.0
         with:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
           context: ./tickets
           repository: thanhtruc123/tickets
           tags: thanhtruc123/tickets:lastest, ${{github.run_number}}
