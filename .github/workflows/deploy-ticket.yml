@@ -15,7 +15,7 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
     - run: |
         docker build ./tickets -t thanhtruc123/tickets:latest
-    - run: docker push thanhtruc123/tickets:latest
+    - run: docker push docker.io/thanhtruc123/tickets:latest
     - uses: digitalocean/action-doctl@v2
       with:
         token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
