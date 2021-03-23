@@ -14,7 +14,7 @@ declare global {
 
 let mongo: any;
 beforeAll(async () => {
-  process.env.JWT_KEY = '123456';
+  process.env.JWT_KEY = '666';
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
   mongo = new MongoMemoryServer();

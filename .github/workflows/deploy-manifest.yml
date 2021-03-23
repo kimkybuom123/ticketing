@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Deploy-auth
+name: Deploy-manifest
 
 on:
   push:
@@ -17,5 +17,5 @@ jobs:
     - uses: digitalocean/action-doctl@v2
       with:
         token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
-    - run: doctl kubernetes cluster kubeconfig save ticketing
+    - run: doctl kubernetes cluster kubeconfig save 97e9c23b-d306-4618-a833-e04182f35ded
     - run: kubectl apply -f infra/k8s && kubectl apply -f ./infra/k8s-prod

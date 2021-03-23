@@ -1,4 +1,4 @@
-name: Deploy-tickets
+name: Deploy-auth
 on:
   push:
     branches: [ master ]
@@ -26,12 +26,12 @@ jobs:
       - name: publish docker
         uses: docker/build-push-action@v2.3.0
         with:
-          context: ./tickets
-          repository: thanhtruc123/tickets
-          tags: thanhtruc123/tickets:lastest
+          context: ./auth
+          repository: thanhtruc123/auth
+          tags: thanhtruc123/auth:lastest
           push: true
-          path: ./tickets
-          cache-from: type=registry,ref=thanhtruc123/tickets:latest
+          path: ./auth
+          cache-from: type=registry,ref=thanhtruc123/auth:latest
           cache-to: type=inline
       -
         name: Image digest
@@ -43,4 +43,4 @@ jobs:
         with:
           token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
       - run: doctl kubernetes cluster kubeconfig save 97e9c23b-d306-4618-a833-e04182f35ded
-      - run: kubectl rollout restart deployment tickets-depl
+      - run: kubectl rollout restart deployment auth-depl
