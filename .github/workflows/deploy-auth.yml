@@ -30,7 +30,9 @@ jobs:
           repository: thanhtruc123/auth
           tags: thanhtruc123/auth:lastest
           push: true
-          path: ./auth      
+          path: ./auth
+          cache-from: type=registry,ref=thanhtruc123/auth:latest
+          cache-to: type=inline
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
