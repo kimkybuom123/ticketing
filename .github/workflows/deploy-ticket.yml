@@ -31,7 +31,9 @@ jobs:
           repository: thanhtruc123/tickets
           tags: thanhtruc123/tickets:lastest
           push: true
-          path: ./tickets      
+          path: ./tickets
+          cache-from: type=registry,ref=thanhtruc123/tickets:latest
+          cache-to: type=inline
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
