@@ -1,5 +1,4 @@
-name: Deploy-tickets
-
+name: Deploy-auth
 on:
   push:
     branches: [ master ]
