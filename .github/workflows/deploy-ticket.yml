@@ -27,7 +27,7 @@ jobs:
         with:
           context: ./tickets
           repository: thanhtruc123/tickets
-          tags: thanhtruc123/tickets:lastest
+          tags: thanhtruc123/tickets:lastest , thanhtruc123
           push: true
           path: ./tickets      
       -
