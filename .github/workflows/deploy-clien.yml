@@ -1,0 +1,46 @@
+name: Deploy-tickets
+on:
+  push:
+    branches: [ master ]
+    paths: 
+      - 'tickets/**'
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: publish docker
+        uses: docker/build-push-action@v2.3.0
+        with:
+          context: ./client
+          repository: thanhtruc123/client
+          tags: thanhtruc123/client:lastest
+          push: true
+          path: ./client
+          cache-from: type=registry,ref=thanhtruc123/client:latest
+          cache-to: type=inline
+      -
+        name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+        
+      -
+        name: login api digitalocean
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{secrets.DIGITALOCEAN_ACCESS_TOKEN}}
+      - run: doctl kubernetes cluster kubeconfig save 97e9c23b-d306-4618-a833-e04182f35ded
+      - run: kubectl rollout restart deployment client-depl
