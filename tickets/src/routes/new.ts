@@ -26,7 +26,7 @@ router.post(
       userId: req.currentUser!.id,
     });
     await ticket.save();
-    amqp.connect("amqp://172.17.0.5:5672", async (err, conn) => {
+    amqp.connect("amqp://172.17.0.7:5672", async (err, conn) => {
       if (err) {
         throw err;
       }
