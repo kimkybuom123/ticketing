@@ -27,8 +27,11 @@ Step 3
     + pls check port 5672 !!!!!!(if is in use , pls kill it)
     + in step2 check ip service endpoint ip rbmq
     + set it in
-    + {@kimkybuom123:https://github.com/kimkybuom123/ticketing/blob/master/tickets/src/routes/new.ts }
-    + `kubectl port-forward (pod is run rbmq) 5672:5672 `
+    + ` amqp.connect("amqp://172.17.0.7:5672", async (err, conn) => {
+      if (err) {
+        throw err;
+      }`
+    + run command : `kubectl port-forward (pod is run rbmq) 5672:5672 `
     + open postman and test .
 
 THANKS
