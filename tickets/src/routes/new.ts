@@ -2,6 +2,8 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { requireAuth, validateRequest } from '@sgticket/common';
 import { Ticket } from '../models/ticket';
+import { TicketCreatedPublisher } from "../events/publisher/ticket-created-publisher";
+import amqp from "amqplib/callback_api";
 
 const router = express.Router();
 
@@ -24,9 +26,21 @@ router.post(
       userId: req.currentUser!.id,
     });
     await ticket.save();
+    amqp.connect("amqp://172.17.0.5:5672", async (err, conn) => {
+      if (err) {
+        throw err;
+      }
+      console.log("connected");
+      const publisher = new TicketCreatedPublisher(conn);
 
-    res.status(201).send(ticket);
+      await publisher.publish({
+        id: ticket.id,
+        title: ticket.title,
+        price: ticket.price,
+        userId: ticket.userId
+      });
+      res.status(201).send(ticket);
+    });
   }
 );
-
 export { router as createTicketRouter };

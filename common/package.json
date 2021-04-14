@@ -1,6 +1,6 @@
 {
-  "name": "@sgtickets/common",
-  "version": "1.0.22",
+  "name": "@cloneticketing/common",
+  "version": "1.0.28",
   "description": "",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
@@ -16,7 +16,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "del-cli": "^3.0.0",
+    "@types/amqplib": "^0.5.17",
+    "amqplib": "^0.7.1",
+    "del-cli": "^3.0.1",
     "typescript": "^3.8.3"
   },
   "dependencies": {

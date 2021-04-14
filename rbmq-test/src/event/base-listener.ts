@@ -1,6 +1,6 @@
 import amqp from "amqplib/callback_api";
 import { Message } from "amqplib/properties";
-import { Subjects } from "./subjects";
+import { Subjects } from "./subject";
 import {Connection} from 'amqplib/callback_api';
 interface Event {
     subjects: Subjects;

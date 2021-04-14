@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default ({ currentUser }) => {
   const links = [
-    !currentUser && { label: 'Sign Up', href: '/auth/signup' },
+    !currentUser && { label: 'Sign  Up', href: '/auth/signup' },
     !currentUser && { label: 'Sign In', href: '/auth/signin' },
     currentUser && { label: 'Sign Out', href: '/auth/signout' }
   ]
@@ -28,4 +28,4 @@ export default ({ currentUser }) => {
       </div>
     </nav>
   );
-};SS
+};

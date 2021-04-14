@@ -11,7 +11,9 @@
   "keywords": [],
   "description": "",
   "dependencies": {
+    "@types/amqplib": "^0.5.17",
     "@types/node": "^14.14.31",
+    "amqplib": "^0.7.1",
     "node-nats-streaming": "^0.3.2",
     "tsc": "^1.20150623.0",
     "tsc-init": "^2.1.0"
