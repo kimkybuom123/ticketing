@@ -1,5 +1,5 @@
 import  { Connection } from "amqplib/callback_api";
-import { Subjects } from "./subjects";
+import { Subjects } from "./subject";
 
 interface Event {
     subjects: Subjects;

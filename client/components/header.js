@@ -28,4 +28,4 @@ export default ({ currentUser }) => {
       </div>
     </nav>
   );
-};SS
+};

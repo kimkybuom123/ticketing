@@ -18,11 +18,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cloneticketing/common": "^1.0.28",
     "@sgticket/common": "^1.0.12",
     "@types/cookie-session": "^2.0.39",
     "@types/express": "^4.17.3",
     "@types/jsonwebtoken": "^8.3.8",
     "@types/mongoose": "^5.7.8",
+    "amqplib": "^0.7.1",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
@@ -33,6 +35,7 @@
     "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@types/amqplib": "^0.5.17",
     "@types/jest": "^25.2.1",
     "@types/mocha": "^8.2.1",
     "@types/supertest": "^2.0.8",

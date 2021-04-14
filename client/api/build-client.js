@@ -9,7 +9,8 @@ export default ({ req }) => {
     }
     else {
         return axios.create({
-            baseURL:"/"
+            baseURL: "ticketinghala.dev",
+            headers:req.headers
         })
     }
 }
