@@ -1,5 +1,6 @@
 stages:
  - build
+ - test
 
 image: docker:19.03.12
 
